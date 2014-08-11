@@ -1,3 +1,5 @@
+
+
 class Board
   attr_reader :board
   def initialize
@@ -8,7 +10,11 @@ class Board
   
   def generate_board
     board = Array.new(9) { Array.new(9) }
+    board.each do |array|
+      array.map! { |square| square = Tile.new}
+    end
   end
+  
   
   def generate_bomb
     bomb_locations = []
@@ -21,14 +27,16 @@ class Board
   
   def render_board
     @board.each do |array|
-      array.map! { |square| square = "*"}
+      array.map!{ |tile| tile.reveal }
     end
+    @board
   end
 end
 
 class Tile
   
   def reveal
+    p self.inspect
   end
   
   def neighbors
@@ -46,10 +54,13 @@ class Tile
   def revealed?
   end
   
-  def inspects
+  def inspect
+    return "F" if flagged?
+    return "_" if revealed?
+    return "*"
   end
   
 end
 
 b = Board.new()
-p b.board
+print b.board
