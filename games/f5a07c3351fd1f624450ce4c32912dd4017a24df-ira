@@ -1,0 +1,182 @@
+--- !ruby/object:Game
+board: !ruby/object:Board
+  board_state:
+  - - &70180801903480 !ruby/object:Tile
+      revealed: true
+    - &70180801903460 !ruby/object:Tile
+      revealed: true
+    - !ruby/object:Tile {}
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      neighbor_bomb_count: 2
+    - !ruby/object:Tile
+      bombed: true
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+  - - &70180801903280 !ruby/object:Tile
+      neighbor_bomb_count: 2
+      revealed: true
+    - &70180801903260 !ruby/object:Tile
+      neighbor_bomb_count: 2
+      revealed: true
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      bombed: true
+    - !ruby/object:Tile
+      neighbor_bomb_count: 2
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      bombed: true
+  - - !ruby/object:Tile
+      bombed: true
+    - !ruby/object:Tile
+      bombed: true
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      neighbor_bomb_count: 2
+    - !ruby/object:Tile
+      neighbor_bomb_count: 2
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+  - - !ruby/object:Tile
+      neighbor_bomb_count: 2
+    - !ruby/object:Tile
+      neighbor_bomb_count: 3
+    - !ruby/object:Tile
+      neighbor_bomb_count: 2
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      bombed: true
+    - !ruby/object:Tile
+      neighbor_bomb_count: 2
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile {}
+  - - !ruby/object:Tile {}
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      bombed: true
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      neighbor_bomb_count: 2
+    - !ruby/object:Tile
+      bombed: true
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile {}
+  - - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      neighbor_bomb_count: 2
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile {}
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile {}
+  - - !ruby/object:Tile
+      bombed: true
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile {}
+    - !ruby/object:Tile {}
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile {}
+    - !ruby/object:Tile {}
+  - - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile {}
+    - !ruby/object:Tile {}
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      bombed: true
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile {}
+    - !ruby/object:Tile {}
+  - - !ruby/object:Tile {}
+    - !ruby/object:Tile {}
+    - !ruby/object:Tile {}
+    - !ruby/object:Tile {}
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile
+      neighbor_bomb_count: 1
+    - !ruby/object:Tile {}
+    - !ruby/object:Tile {}
+  bomb_locations:
+  - - 6
+    - 0
+  - - 1
+    - 4
+  - - 2
+    - 1
+  - - 4
+    - 2
+  - - 4
+    - 6
+  - - 2
+    - 0
+  - - 0
+    - 5
+  - - 3
+    - 5
+  - - 1
+    - 8
+  - - 7
+    - 5
+  visited_tiles:
+  - *70180801903480
+  - *70180801903280
+  - *70180801903260
+  - *70180801903460
+  - *70180801903280
+  - *70180801903260
+  - *70180801903460
+  - *70180801903280
+  - *70180801903260
+  - *70180801903460
+  - *70180801903280
+  - *70180801903260
+  - *70180801903460
