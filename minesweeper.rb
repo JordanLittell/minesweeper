@@ -44,7 +44,7 @@ class Game
       save_game if response[0] == "s"
       load_game if response[0] == "l"
       position = response.split(',').map!(&:to_i)
-      game_over = true if board.is_bombed?
+      # game_over = true if board.position.bombed?
       #update the board
       board.render
       puts "Flag or Reveal? F/R"
@@ -77,34 +77,19 @@ class Board
   def initialize
     @board_state = generate_board
     @bomb_locations = generate_bombs
-    set_bomb_count
+    # set_bomb_count
   end
   
   def generate_board
     board = Array.new(9) { Array.new(9) }
     
     # give tile its pos, and pass board in
-    board.each do |array|
-      array.map! { |square| square = Tile.new }
+    board.each_index do |i|
+      9.times do |j|
+        board[i][j] = Tile.new(self, [i,j])
+      end
     end
   end
-  
-  # def set_bomb_count
-  #   9.times do |i|
-  #     9.times do |j|
-  #       bomb_count = 0
-  #       current_tile = @board_state[i][j]
-  #       neighbors = current_tile.neighbors([i,j])
-  #       neighbors.each do |neighbor|
-  #         neighbor_tile = @board_state[neighbor[0]][neighbor[1]]
-  #         bomb_count += 1 if neighbor_tile.bombed?
-  #       end
-  #       unless current_tile.bombed? || bomb_count == 0
-  #         current_tile.neighbor_bomb_count = bomb_count
-  #       end
-  #     end
-  #   end
-  # end
   
   def generate_bombs
     bomb_locations = []
@@ -125,7 +110,7 @@ class Board
     # system 'clear'
     picture = Array.new(9){Array.new}  
     @board_state.each_with_index do |array,index|
-      picture[index] << array.map { |tile| tile.reveal }
+      picture[index] << array.map { |tile| tile.reveal! }
     end
     picture.each do |array|
       print array.join(" ")
@@ -150,17 +135,13 @@ class Board
 #     end
 #   end
 
-  def process_flagged(position)
-    @board_state[position[0]][position[1]].flagged = true
-  end
-
   def update_board_state(position, choice)
     x, y = position[0], position[1]
     p @board_state[x][y]
     if choice == "F"
       @board_state[x][y].flagged = true
-      process_flagged(position)
     end
+    
     if choice == "R"
       @board_state[x][y].revealed = true 
       process_reveal(position)
@@ -169,9 +150,9 @@ class Board
 end
 
 class Tile
-  attr_accessor :flagged, :revealed, :bombed
+  attr_accessor :flagged, :revealed, :bombed, :board
   
-  def initialize(position, board)
+  def initialize (board, position)
     @position, @board = position, board
     flagged = false
     revealed = false
@@ -193,6 +174,16 @@ class Tile
     [-1, -1],
   ]
   
+  def reveal!
+    return flagged if flagged?
+    if revealed?
+      @neighbor_tile.each do |tile|
+        tile.reveal!
+      end
+    end
+    #call reveal on neighbors
+  end
+  
   def neighboring_spots
     neighbors = []
     NEIGHBORS.each do |coord|
@@ -204,11 +195,21 @@ class Tile
   end
   
   def neighbors 
-    # get tiles (from board) at neighboring_spots
+    @neighbor_tiles = []
+    neighboring_spots.each do |spot|
+      @neighbor_tiles << board[spot[0]][spot[1]]
+    end
+    @neighbor_tiles
   end
   
   def neighbor_bomb_count
-    # get number of neighbors that are bombs
+    count = 0
+    @neighbor_tiles.each do |tile|
+      if tile.bombed?
+        count += 1
+      end
+    end
+    count
   end
   
   def bombed?
@@ -216,19 +217,14 @@ class Tile
   end
   
   def flagged?
-    flagged
+    flagged = "F"
   end
   
   def revealed?
-    revealed
+    revealed = "_"
   end
   
-  def inspect
-    return 'F' if flagged?
-    return "#{neighbor_bomb_count}" if neighbor_bomb_count && self.revealed?
-    return '_' if revealed?
-    return '*' 
-  end
+ 
 end
 
 
